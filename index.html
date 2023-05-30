@@ -23,6 +23,7 @@ LICENSE: MIT
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
                 <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERNH2MG1VG"></script>
         <script>
@@ -49,8 +50,8 @@ LICENSE: MIT
           };
         
           // Initialize Firebase
-          const app = initializeApp(firebaseConfig);
-          const contadorCollectionRef = app.firestore().collection('users');
+          const app = firebase.initializeApp(firebaseConfig);
+          const contadorCollectionRef = firebase.firestore().collection('users');
           const contadorDocRef = contadorCollectionRef.doc('mi-WFucB6UylMLdk2qjN26Z');
           // Obtener el número actual del contador
           contadorDocRef.get()
