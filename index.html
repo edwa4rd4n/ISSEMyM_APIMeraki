@@ -25,10 +25,10 @@ LICENSE: MIT
         <link rel="stylesheet" type="text/css" href="./css/style.css">
                 <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERNH2MG1VG"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
-
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -36,38 +36,7 @@ LICENSE: MIT
 
           gtag('config', 'G-ERNH2MG1VG');
         </script>
-        <script>
-          // Your web app's Firebase configuration
-          const firebaseConfig = {
-            apiKey: "AIzaSyDQplx_LWkdDQDPru5L9bkrccupkVPbd_Y",
-            authDomain: "issemymapimeraki.firebaseapp.com",
-            projectId: "issemymapimeraki",
-            storageBucket: "issemymapimeraki.appspot.com",
-            messagingSenderId: "564552954513",
-            appId: "1:564552954513:web:40b680334a40bf35660530"
-          };
-          // Inicializa Firebase
-          firebase.initializeApp(firebaseConfig);
-
-          // Obtén una referencia a la colección "users" y al documento "mi-WFucB6UylMLdk2qjN26Z"
-          const usersCollectionRef = firebase.firestore().collection("users");
-          const miDocumentRef = usersCollectionRef.doc("mi-WFucB6UylMLdk2qjN26Z");
-
-          // Obtén los datos del documento
-          miDocumentRef
-            .get()
-            .then((doc) => {
-              if (doc.exists) {
-                const data = doc.data();
-                console.log(data);
-              } else {
-                console.log("El documento no existe");
-              }
-            })
-            .catch((error) => {
-              console.log("Error al obtener el documento:", error);
-            });
-        </script>
+     
     </head>
     <div class="container">  
       
@@ -89,5 +58,153 @@ LICENSE: MIT
         <p class="copyright">Implemented by  <a href="https://4n.com.mx/" target="_blank" title="Internet of LEGO">cuatro networks</a></p>
       </form>
     </div>
-    <script src="./js/meraki.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+      import { getFirestore,doc, updateDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+      var contador;
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDQplx_LWkdDQDPru5L9bkrccupkVPbd_Y",
+        authDomain: "issemymapimeraki.firebaseapp.com",
+        projectId: "issemymapimeraki",
+        storageBucket: "issemymapimeraki.appspot.com",
+        messagingSenderId: "564552954513",
+        appId: "1:564552954513:web:ec72b7509221c9b2660530"
+        };
+
+      initializeApp(firebaseConfig);
+      const db = getFirestore();
+
+      // Hacer la consulta a una colección
+      const consultaUsuarios = async () => {
+        try {
+          const usuariosRef = collection(db, "users");
+          const usuariosSnapshot = await getDocs(usuariosRef);
+
+          usuariosSnapshot.forEach((doc) => {
+            contador = doc.data().contador;
+            console.log(doc.id, " => ", contador);
+            contador++;
+            incrementar();
+          });
+
+        } catch (error) {
+          console.log("Error al realizar la consulta: ", error);
+        }
+        };
+
+      // Ejecutar la consulta
+      consultaUsuarios();
+
+      const documentoId = "WFucB6UylMLdk2qjN26Z";
+
+      function incrementar(){
+          //INCREMTAR CONTADOR
+          // Actualizar un campo específico en el documento
+          const actualizarCampo = async () => {
+            try {
+              const documentoRef = doc(db, "users", documentoId);
+              await updateDoc(documentoRef, {
+                contador: contador
+              });
+              console.log(contador);
+              console.log("Campo actualizado con éxito");
+            } catch (error) {
+              console.error("Error al actualizar el campo:", error);
+            }
+          };
+
+          //Ejecutar la actualizacion
+          actualizarCampo();
+      }
+
+      function borrarContador(){
+            //Reiniciar contador
+          // Actualizar un campo específico en el documento
+          const reiniciarCampo = async () => {
+            try {
+              const documentoRef = doc(db, "users", documentoId);
+
+              await updateDoc(documentoRef, {
+                contador: 0
+              });
+              console.log(contador);
+              console.log("Campo reinicado con éxito");
+            } catch (error) {
+              console.error("Error al reiniciarr el campo:", error);
+            }
+          };
+
+          //Ejecutar la actualizacion
+          reiniciarCampo();
+      }
+    
+
+// Parse paramaters
+var base_grant_url = decodeURIComponent("https://n298.network-auth.com/splash/grant");
+var user_continue_url = decodeURIComponent("https://www.google.com/");
+
+// Print Meraki provided paramaters for Debugging State
+console.log("user_continue_url: " +user_continue_url);
+console.log("base_grant_url: " +base_grant_url);
+
+
+// Form Submit handler. 
+document.getElementById('loginForm').onsubmit= function(e){
+    e.preventDefault(); //prevents default form submission process to allow login and validation
+   
+    
+    if(contador==1001){
+      alert("Usuario con encuentesa");
+    }else{
+      // Complete Login
+      authUser();
+    }
+}
+
+// ******************
+// Login to Meraki by redirecting client to the base_grant_url 
+// 
+// The logingUrl will add a continue_url parameter for a final client
+// redirect to their intended site. 
+// (you could override this url to send the user to a home page)
+// ****************** 
+function authUser(){
+
+    var loginUrl = base_grant_url;
+    if(user_continue_url !== "undefined"){
+        loginUrl += "?continue_url="+user_continue_url;
+    }
+    console.log("Logging in... ",loginUrl);
+    // redirect browser to meraki auth URL.
+    window.location.href = loginUrl;
+}
+
+// Button handler function to store the form data and login. 
+function login(){
+    // send the data somewhere like a database
+    var data = {};
+    data.name = document.getElementById("name").value;
+    data.email = document.getElementById("email").value;
+    alert("Hello "+data.name +"\n"+"Thanks for providing your email: "+data.email);
+    console.log("Storing data to db...", data);
+
+    ;
+}
+
+// Helper function to parse URL
+function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}
+    </script>
 </html>
