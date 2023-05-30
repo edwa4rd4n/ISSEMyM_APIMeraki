@@ -1,6 +1,4 @@
-
-
- // Crear una instancia de VisitCounter
+// Crear una instancia de VisitCounter
  const counter = new VisitCounter();
 // Parse paramaters
 var base_grant_url = decodeURIComponent("https://n298.network-auth.com/splash/grant");
