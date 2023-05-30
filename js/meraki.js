@@ -1,23 +1,3 @@
-// Definición de la clase VisitCounter
-class VisitCounter {
-    constructor() {
-      this.visits = 0;
-    }
-
-    increment() {
-      this.visits++;
-    }
-
-    redirectToSurvey() {
-      if (this.visits >= 1001) {
-        window.location.href = 'encuesta.html';
-      }
-    }
-
-    getVisits() {
-        return this.visits;
-    }
-}
 // Parse paramaters
 var base_grant_url = decodeURIComponent("https://n298.network-auth.com/splash/grant");
 var user_continue_url = decodeURIComponent("https://www.google.com/");
@@ -32,12 +12,20 @@ console.log("base_grant_url: " +base_grant_url);
 document.getElementById('loginForm').onsubmit= function(e){
     e.preventDefault(); //prevents default form submission process to allow login and validation
     //login();
-    // Crear una instancia de VisitCounter
-    const counter = new VisitCounter(); 
-    // Incrementar el contador de visitas y redireccionar si es necesario
-    counter.increment();
-    counter.redirectToSurvey();
-    console.log(counter.getvisits());
+    // Crear el array
+    let visits = [];
+
+    // Agregar datos al array
+    visits.push(i);
+    
+    if(visits.length>=1001){
+        alert("Tu eres el usuario 1001");
+        // Borrar el array
+        visits.splice(0, datos.length);
+    }
+    
+    // Verificar que el array esté vacío
+    console.log(datos); // []
 }
 
 // ******************
