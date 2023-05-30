@@ -23,9 +23,10 @@ LICENSE: MIT
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
                 <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERNH2MG1VG"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -43,26 +44,27 @@ LICENSE: MIT
             messagingSenderId: "564552954513",
             appId: "1:564552954513:web:40b680334a40bf35660530"
           };
-        
-          // Initialize Firebase
-         
+          // Inicializa Firebase
           firebase.initializeApp(firebaseConfig);
-          const contadorCollectionRef = app.firebase.firestore().collection('users');
-          const contadorDocRef = contadorCollectionRef.doc('mi-WFucB6UylMLdk2qjN26Z');
-          // Obtener el número actual del contador
-          contadorDocRef.get()
+
+          // Obtén una referencia a la colección "users" y al documento "mi-WFucB6UylMLdk2qjN26Z"
+          const usersCollectionRef = firebase.firestore().collection("users");
+          const miDocumentRef = usersCollectionRef.doc("mi-WFucB6UylMLdk2qjN26Z");
+
+          // Obtén los datos del documento
+          miDocumentRef
+            .get()
             .then((doc) => {
               if (doc.exists) {
-                const contadorActual = doc.data().valor;
-                console.log("Número actual del contador: " + contadorActual);
+                const data = doc.data();
+                console.log(data);
               } else {
-                console.log("No se encontró el documento del contador");
+                console.log("El documento no existe");
               }
             })
             .catch((error) => {
-              console.log("Error al obtener el contador: ", error);
+              console.log("Error al obtener el documento:", error);
             });
-          
         </script>
     </head>
     <div class="container">  
