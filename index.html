@@ -50,7 +50,7 @@ LICENSE: MIT
         
           // Initialize Firebase
           const app = initializeApp(firebaseConfig);
-          const contadorCollectionRef = firebase.firestore().collection('users');
+          const contadorCollectionRef = app.firestore().collection('users');
           const contadorDocRef = contadorCollectionRef.doc('mi-WFucB6UylMLdk2qjN26Z');
           // Obtener el número actual del contador
           contadorDocRef.get()
