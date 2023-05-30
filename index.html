@@ -45,7 +45,8 @@ LICENSE: MIT
           };
         
           // Initialize Firebase
-          const app = firebase.initializeApp(firebaseConfig);
+         
+          firebase.initializeApp(firebaseConfig);
           const contadorCollectionRef = app.firebase.firestore().collection('users');
           const contadorDocRef = contadorCollectionRef.doc('mi-WFucB6UylMLdk2qjN26Z');
           // Obtener el número actual del contador
