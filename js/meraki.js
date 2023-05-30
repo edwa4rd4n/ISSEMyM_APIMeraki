@@ -17,7 +17,7 @@ document.getElementById('loginForm').onsubmit= function(e){
 
     // Agregar datos al array
     visits.push(i);
-    
+    console.log(visits);
     if(visits.length>=1001){
         alert("Tu eres el usuario 1001");
         // Borrar el array
