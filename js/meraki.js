@@ -4,7 +4,9 @@ var user_continue_url = decodeURIComponent("https://www.google.com/");
 
 // Print Meraki provided paramaters for Debugging State
 console.log("user_continue_url: "+user_continue_url);
-console.log("base_grant_url" +base_grant_url);
+console.log("base_grant_url: "+base_grant_url);
+
+
 
 // Form Submit handler. 
 document.getElementById('loginForm').onsubmit= function(e){
