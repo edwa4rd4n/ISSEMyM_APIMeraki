@@ -1,5 +1,6 @@
 // Definición de la clase VisitCounter
 class VisitCounter {
+    static visits =0;
     constructor() {
       this.visits = 0;
     }
