@@ -12,7 +12,14 @@ console.log("base_grant_url: " +base_grant_url);
 // Form Submit handler. 
 document.getElementById('loginForm').onsubmit= function(e){
     e.preventDefault(); //prevents default form submission process to allow login and validation
-    login();
+    //login();
+    // Crear una instancia de VisitCounter
+    const counter = new VisitCounter();
+
+    // Incrementar el contador de visitas y redireccionar si es necesario
+    counter.increment();
+    counter.redirectToSurvey();
+    console.log(counter.getvisits());
 }
 
 // ******************
@@ -61,10 +68,3 @@ function GetURLParameter(sParam)
     }
 }
 
-// Crear una instancia de VisitCounter
-const counter = new VisitCounter();
-
-// Incrementar el contador de visitas y redireccionar si es necesario
-counter.increment();
-counter.redirectToSurvey();
-console.log(counter.getvisits());
