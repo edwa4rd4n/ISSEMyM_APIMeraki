@@ -18,5 +18,4 @@ class VisitCounter {
         return this.visits;
     }
   }
-  export default VisitCounter;
   

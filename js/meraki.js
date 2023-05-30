@@ -1,4 +1,5 @@
-import VisitCounter from './user.js';
+
+
  // Crear una instancia de VisitCounter
  const counter = new VisitCounter();
 // Parse paramaters
