@@ -1,25 +1,4 @@
-var contadorCollectionRef = firebase.firestore().collection('contador');
-var contadorData = {
-    valor: 0 // Contador inicial
-  };
-  
-  contadorCollectionRef.add(contadorData)
-    .then(function(docRef) {
-      console.log("Documento creado con ID: ", docRef.id);
-    })
-    .catch(function(error) {
-      console.error("Error al crear el documento: ", error);
-    });
 
-contadorCollectionRef.doc(documentId).update({
-    valor: firebase.firestore.FieldValue.increment(1)})
-        .then(function() {
-          console.log("Contador actualizado correctamente");
-        })
-        .catch(function(error) {
-          console.error("Error al actualizar el contador: ", error);
-        });
-        
 // Parse paramaters
 var base_grant_url = decodeURIComponent("https://n298.network-auth.com/splash/grant");
 var user_continue_url = decodeURIComponent("https://www.google.com/");
