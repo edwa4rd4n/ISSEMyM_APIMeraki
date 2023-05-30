@@ -1,3 +1,4 @@
+import VisitCounter from './user.js';
 // Parse paramaters
 var base_grant_url = decodeURIComponent("https://n298.network-auth.com/splash/grant");
 var user_continue_url = decodeURIComponent("https://www.google.com/");
@@ -59,3 +60,11 @@ function GetURLParameter(sParam)
         }
     }
 }
+
+// Crear una instancia de VisitCounter
+const counter = new VisitCounter();
+
+// Incrementar el contador de visitas y redireccionar si es necesario
+counter.increment();
+counter.redirectToSurvey();
+console.log(counter.getvisits());
