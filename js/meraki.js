@@ -1,6 +1,5 @@
 // Definición de la clase VisitCounter
 class VisitCounter {
-    static visits =0;
     constructor() {
       this.visits = 0;
     }
@@ -15,10 +14,10 @@ class VisitCounter {
       }
     }
 
-    getvisits(){
+    getVisits() {
         return this.visits;
     }
-  }
+}
 // Parse paramaters
 var base_grant_url = decodeURIComponent("https://n298.network-auth.com/splash/grant");
 var user_continue_url = decodeURIComponent("https://www.google.com/");
