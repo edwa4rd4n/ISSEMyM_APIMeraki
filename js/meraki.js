@@ -6,17 +6,17 @@ var user_continue_url = decodeURIComponent("https://www.google.com/");
 console.log("user_continue_url: " +user_continue_url);
 console.log("base_grant_url: " +base_grant_url);
 
-
+let contador=0;
+// Crear el array
+let visits = [];
 
 // Form Submit handler. 
 document.getElementById('loginForm').onsubmit= function(e){
     e.preventDefault(); //prevents default form submission process to allow login and validation
     //login();
-    // Crear el array
-    let visits = [];
-
+    contador++;
     // Agregar datos al array
-    visits.push(i);
+    visits.push(contador);
     console.log(visits);
     if(visits.length>=1001){
         alert("Tu eres el usuario 1001");
